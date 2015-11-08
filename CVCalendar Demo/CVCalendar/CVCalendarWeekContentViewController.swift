@@ -16,7 +16,7 @@ public final class CVCalendarWeekContentViewController: CVCalendarContentViewCon
         weekViews = [Identifier : WeekView]()
         monthViews = [Identifier : MonthView]()
         super.init(calendarView: calendarView, frame: frame)
-        initialLoad(NSDate())
+        initialLoad(initialDate)
     }
     
     public init(calendarView: CalendarView, frame: CGRect, presentedDate: NSDate) {

@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        monthLabel.text = CVDate(date: NSDate()).globalDescription
+        monthLabel.text = CVDate(date: initialDate).globalDescription
     }
 
     override func viewDidLayoutSubviews() {

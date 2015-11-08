@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let componets = NSDateComponents()
+        componets.day = 30
+        initialDate = calendar.dateByAddingComponents(componets, toDate: date, options: [])
+        
         return true
     }
 
