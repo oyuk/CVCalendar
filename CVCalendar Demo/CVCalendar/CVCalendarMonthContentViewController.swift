@@ -131,17 +131,17 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
     }
     
     public override func performedDayViewSelection(dayView: DayView) {
-        if dayView.isOut && calendarView.shouldScrollOnOutDayViewSelection {
-            if dayView.date.day > 20 {
-                let presentedDate = dayView.monthView.date
-                calendarView.presentedDate = Date(date: self.dateBeforeDate(presentedDate))
-                presentPreviousView(dayView)
-            } else {
-                let presentedDate = dayView.monthView.date
-                calendarView.presentedDate = Date(date: self.dateAfterDate(presentedDate))
-                presentNextView(dayView)
-            }
-        }
+//        if dayView.isOut && calendarView.shouldScrollOnOutDayViewSelection {
+//            if dayView.date.day > 20 {
+//                let presentedDate = dayView.monthView.date
+//                calendarView.presentedDate = Date(date: self.dateBeforeDate(presentedDate))
+//                presentPreviousView(dayView)
+//            } else {
+//                let presentedDate = dayView.monthView.date
+//                calendarView.presentedDate = Date(date: self.dateAfterDate(presentedDate))
+//                presentNextView(dayView)
+//            }
+//        }
     }
     
     public override func presentPreviousView(view: UIView?) {
