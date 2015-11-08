@@ -8,6 +8,8 @@
 
 import UIKit
 
+var initialDate:NSDate!
+
 public typealias Identifier = String
 public class CVCalendarContentViewController: UIViewController {
     // MARK: - Constants
@@ -40,7 +42,7 @@ public class CVCalendarContentViewController: UIViewController {
     public init(calendarView: CalendarView, frame: CGRect) {
         self.calendarView = calendarView
         scrollView = UIScrollView(frame: frame)
-        presentedMonthView = MonthView(calendarView: calendarView, date: NSDate())
+        presentedMonthView = MonthView(calendarView: calendarView, date: initialDate)
         presentedMonthView.updateAppearance(frame)
         
         super.init(nibName: nil, bundle: nil)
