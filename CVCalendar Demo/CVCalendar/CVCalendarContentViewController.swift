@@ -8,7 +8,7 @@
 
 import UIKit
 
-var initialDate:NSDate!
+public var initialDate:NSDate!
 
 public typealias Identifier = String
 public class CVCalendarContentViewController: UIViewController {
