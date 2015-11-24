@@ -64,7 +64,7 @@ public final class CVCalendarView: UIView {
     
     public var presentedDate: Date! {
         didSet {
-            if let _ = oldValue {
+            if let oldValue = oldValue {
                 delegate?.presentedDateUpdated?(presentedDate)
             }
         }
@@ -204,7 +204,7 @@ public final class CVCalendarView: UIView {
 
 extension CVCalendarView {
     public func commitCalendarViewUpdate() {
-        if let _ = delegate, let contentController = contentController {
+        if let delegate = delegate, let contentController = contentController {
             let contentViewSize = contentController.bounds.size
             let selfSize = bounds.size
             let screenSize = UIScreen.mainScreen().bounds.size
@@ -256,7 +256,7 @@ extension CVCalendarView {
     public func didSelectDayView(dayView: CVCalendarDayView) {
         if let controller = contentController {
             presentedDate = dayView.date
-            delegate?.didSelectDayView?(dayView, animationDidFinish: false)
+            delegate?.didSelectDayView?(dayView)
             controller.performedDayViewSelection(dayView) // TODO: Update to range selection
         }
     }
@@ -285,7 +285,7 @@ extension CVCalendarView {
         contentController.presentPreviousView(nil)
     }
     
-    public func changeMode(mode: CalendarMode, completion: () -> () = {}) {
+    public func changeMode(mode: CalendarMode) {
         if let selectedDate = coordinator.selectedDayView?.date.convertedDate() where calendarMode != mode {
             calendarMode = mode
             
@@ -311,7 +311,6 @@ extension CVCalendarView {
                 self.contentController.scrollView.removeAllSubviews()
                 self.contentController.scrollView.removeFromSuperview()
                 self.contentController = newController
-                completion()
             }
         }
     }
@@ -326,6 +325,7 @@ private extension CVCalendarView {
             switch delegate.presentationMode() {
                 case .MonthView: contentController = MonthContentViewController(calendarView: self, frame: bounds)
                 case .WeekView: contentController = WeekContentViewController(calendarView: self, frame: bounds)
+                default: break
             }
             
             addSubview(contentController.scrollView)

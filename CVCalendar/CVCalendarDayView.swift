@@ -242,7 +242,7 @@ extension CVCalendarDayView {
     
     public func setupDotMarker() {
         for (index, dotMarker) in dotMarkers.enumerate() {
-            dotMarker!.removeFromSuperview()
+            dotMarkers[index]!.removeFromSuperview()
             dotMarkers[index] = nil
         }
         
@@ -311,6 +311,7 @@ extension CVCalendarDayView {
                 func colorMarker() {
                     if let delegate = calendarView.delegate {
                         let appearance = calendarView.appearance
+                        let frame = dotMarker.frame
                         var color: UIColor?
                         if unwinded {
                             if let myColor = delegate.dotMarker?(colorOnDayView: self) {
@@ -391,7 +392,7 @@ extension CVCalendarDayView {
     }
     
     public func moveView(view: UIView, onCircleView circleView: UIView, fromAngle angle: CGFloat, toAngle endAngle: CGFloat, straight: Bool) {
-//        let condition = angle > endAngle ? angle > endAngle : angle < endAngle
+        let condition = angle > endAngle ? angle > endAngle : angle < endAngle
         if straight && angle < endAngle || !straight && angle > endAngle {
             UIView.animateWithDuration(pow(10, -1000), delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 10, options: UIViewAnimationOptions.CurveEaseIn, animations: {
                 let angle = angle.toRadians()
@@ -415,7 +416,7 @@ extension CVCalendarDayView {
         var shape: CVShape!
         
         switch type {
-        case .Single:
+        case let .Single:
             shape = .Circle
             if isCurrentDay {
                 dayLabel?.textColor = appearance.dayLabelPresentWeekdaySelectedTextColor!
@@ -429,7 +430,7 @@ extension CVCalendarDayView {
                 backgroundAlpha = appearance.dayLabelWeekdaySelectedBackgroundAlpha
             }
             
-        case .Range:
+        case let .Range:
             shape = .Rect
             if isCurrentDay {
                 dayLabel?.textColor = appearance.dayLabelPresentWeekdayHighlightedTextColor!
@@ -442,6 +443,8 @@ extension CVCalendarDayView {
                 backgroundColor = appearance.dayLabelWeekdayHighlightedBackgroundColor
                 backgroundAlpha = appearance.dayLabelWeekdayHighlightedBackgroundAlpha
             }
+            
+        default: break
         }
         
         if let circleView = circleView where circleView.frame != dayLabel.bounds {
